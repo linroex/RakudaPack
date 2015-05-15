@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 100);
 			$table->integer('school_id');
 			$table->string('mail', 100);
+			$table->integer('point');
+			$table->enum('type', ['official', 'unofficial']);
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -32,7 +34,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('users');
 	}
 
 }
