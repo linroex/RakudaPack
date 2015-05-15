@@ -19,7 +19,7 @@ class CreateTokensTable extends Migration {
 			$table->string('token', 70);
 			$table->primary('token');
 			$table->string('ip', 60);
-			$table->dateTime('expiretime');
+			$table->timestamp('expiretime');
 			$table->timestamps();
 			$table->softDeletes();
 		});
