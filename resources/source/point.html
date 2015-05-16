@@ -1,51 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>點數記錄 - RakudaPack</title>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	{% include 'header.html' with {"title":"點數記錄"} %}
 	<script>
 		$('#sandbox-container div').datepicker({
 			});
 	</script>
-
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-	  	<div class="container-fluid">
-		    <div class="navbar-header">
-		     	<a class="navbar-brand" href="main.html">RakudaPack</a>
-			</div>
-		    <div>
-			   <ul class="nav navbar-nav navbar-right">
-			      <li>
-						<a href="mission.html"><span class="badge badge-important">4</span>項進行中任務</a>
-					</li>
-					<li>
-						<a href="point.html"><span class="badge badge-important">100</span>點</a>
-					</li>
-			      <li class="dropdown">
-              		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">username <span class="caret"></span></a>
-              		<ul class="dropdown-menu" role="menu">
-		               <li ><a href="member.html">會員資料</a></li>
-		               <li ><a href="mission.html">任務記錄</a></li>
-		               <li ><a href="#">點數記錄</a></li>
-		               <li ><a href="#">檢舉記錄</a></li>
-		               <li class="divider"></li>
-		               <li ><a href="#">登出</a></li>
-              		</ul>
-            	</li>
-			       
-			   </ul>
-
-		    </div>
-
-    	</div>
-	</nav>
-
+	{% include 'navbar-is-login.html' %}
+	
 
    	<div class="col-md-offset-2 col-md-8">
 
@@ -67,8 +31,7 @@
 				    <span class="input-group-addon">to</span>
 				    <input type="text" class="input-sm form-control" name="end" />
 				</div>
-				<div></div>
-
+				<br>
 		  		<table class="table">
 					<tr>
 					  <th>日期</th>
