@@ -4,8 +4,13 @@
 	<meta charset="UTF-8">
 	<title>點數記錄 - RakudaPack</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script>
+		$('#sandbox-container div').datepicker({
+			});
+	</script>
 
 </head>
 <body>
@@ -42,42 +47,56 @@
 	</nav>
 
 
-   <div class="col-md-offset-2 col-md-8">
+   	<div class="col-md-offset-2 col-md-8">
 
 		<div class="panel panel-danger">
-				<div class="panel-heading">
-					<h3 class="panel-title">點數記錄</h3>
-				</div>
+			<div class="panel-heading">
+				<h3 class="panel-title">點數記錄</h3>
+			</div>
 		  	<div class="panel-body">
-		  		<br>
-		    	<div class="col-md-offset-2 col-md-8">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <span class="hidden-sm hidden-xs">姓名</span></td>
-                    <td>YuChiang</td>
-                  </tr>
-                  <tr>
-                    <td><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="hidden-sm hidden-xs">學校</span></td>
-                    <td>ntu</td>
-                  </tr>
-                  <tr>
-                    <td><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <span class="hidden-sm hidden-xs">學校信箱</span></td>
-                    <td>b02902095@ntu</td>
-                  </tr>
-                  <tr>
-                    <td><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <span class="hidden-sm hidden-xs">帳號</span></td>
-                    <td>yuchiang</td>
-                  </tr>
-                  <tr>
-                    	<td><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <span class="hidden-sm hidden-xs">密碼</span></td>
-                    	<td><a href="">（更改密碼？）</a>	</td>
-                    	
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-		  	</div>
+		  		<div class="form-group col-md-offset-3 col-md-6">
+				    <label for="range">轉出/轉入/不限</label>
+					<select name="range" class="form-control">
+			  			<option value="all" selected="true">不限</option>
+			  			<option value="trade_out">轉出</option>
+			  			<option value="trade_in">轉入</option>
+					</select>
+				</div>
+				<div class="input-daterange input-group col-md-offset-3 col-md-6"id="datepicker" name="datepicker">
+				    <input type="text" class="input-sm form-control" name="start" />
+				    <span class="input-group-addon">to</span>
+				    <input type="text" class="input-sm form-control" name="end" />
+				</div>
+				<div></div>
+
+		  		<table class="table">
+					<tr>
+					  <th>日期</th>
+					  <th>時間</th>		
+					  <th>對象</th>
+					  <th>事由</th>
+					  <th>點數</th>
+					  <th>結餘</th>
+					</tr>
+					<tr>
+					  <td>Jill</td>
+					  <td>Smith</td>		
+					  <td>50</td>
+					  <td>50</td>
+					  <td>50</td>
+					  <td>50</td>
+					</tr>
+					<tr>
+					  <td>50</td>
+					  <td>Eve</td>
+					  <td>Jackson</td>		
+					  <td>Jackson</td>		
+					  <td>Jackson</td>		
+					  <td>94</td>
+					</tr>
+				</table>	
+			</div>
+			
 		</div>
 	</div>
 

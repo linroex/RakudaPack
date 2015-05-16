@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>任務記錄 - RakudaPack</title>
+	<title>RakudaPack</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script>
+		$('#myModal').on('shown.bs.modal', function () {
+			$('#myInput').focus()
+		})
+		$('#myModal2').on('shown.bs.modal', function () {
+			$('#myInput').focus()
+		})
+
+		
+	</script>
+	</script>
 </head>
 <body>
-	
+	{% include 'full-menu.html' %}
+
 </body>
 </html>
