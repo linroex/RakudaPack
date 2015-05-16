@@ -41,3 +41,32 @@ Route::get('/schools', function(){
 	$result = array('message' => 'success', 'code' => 1, 'data' => $schools);
 	return response()->json($result);	
 });
+
+Route::get('/register', function(){
+	return view('register');
+});
+Route::get('/login', function(){
+	return view('login');
+});
+
+Route::get('/', function(){
+	return view('main');
+});
+Route::get('/member', function(){
+	return view('member');
+});
+Route::get('/mission', function(){
+	return view('mission');
+});
+Route::get('/point', function(){
+	return view('point');
+});
+
+Route::get('/intro', function(){
+	return view('intro');
+});
+
+
+
+
+

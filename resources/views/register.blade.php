@@ -4,32 +4,32 @@
 <html lang="en">
 
 <title>註冊會員 - RakudaPack</title>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>	<script>
-		$(document).ready(function(){
-			$("#submit").click(function(e){
-				e.preventDefault();
-				var params = $("form").serialize();
-				$.post("/users/register" , params, function(data) {
-					console.log(data);
-				});
-			})
-		});
-	</script>
+<link rel="stylesheet" href="{{url('css/all.min.css')}}">
+<link rel="stylesheet" href="{{url('css/style.css')}}">
+<script src="{{url('js/all.min.js')}}"></script>
+<script>
+	$(document).ready(function(){
+		$("#submit").click(function(e){
+			e.preventDefault();
+			var params = $("form").serialize();
+			$.post("/users/register" , params, function(data) {
+				console.log(data);
+			});
+		})
+	});
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
   	<div class="container-fluid">
 	    <div class="navbar-header">
-	     	<a class="navbar-brand" href="index.html">RakudaPack</a>
+	     	<a class="navbar-brand" href="{{url('/')}}">RakudaPack</a>
 		</div>
 	    <div>
 	    
 		    <ul class="nav navbar-nav navbar-right">
-		        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-		        <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li>
+		        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
+		        <li><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li>
 		    </ul>
 	    </div>
 	</div>
@@ -69,7 +69,7 @@
     		</div>
 		    <div class="form-group">        
 		      	<div class="col-sm-offset-3 col-sm-10">
-		        	<button id="submit" type="submit" class="btn btn-default">Submit</button>
+		        	<button id="submit" type="submit" class="btn btn-primary">Submit</button>
 		        	<button type="reset" class="btn btn-default">Reset</button>
 		      	</div>
 		    </div>

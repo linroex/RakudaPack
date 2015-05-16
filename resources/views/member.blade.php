@@ -1,44 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
-<html lang="en">
-
-<title>會員資料 - RakudaPack</title>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>	
-
+	<title>會員資料 - RakudaPack</title>
+	<link rel="stylesheet" href="{{url('css/all.min.css')}}">
+	<link rel="stylesheet" href="{{url('css/style.css')}}">
+	<script src="{{url('js/all.min.js')}}"></script>
+	<script>
+		$('#myModal').on('shown.bs.modal', function () {
+			$('#myInput').focus()
+		})
+		$('#myModal2').on('shown.bs.modal', function () {
+			$('#myInput').focus()
+		})		
+	</script>
 </head>
 <body>
-	<script>
-	$('#myModal').on('shown.bs.modal', function () {
-		$('#myInput').focus()
-	})
-	$('#myModal2').on('shown.bs.modal', function () {
-		$('#myInput').focus()
-	})		
-</script>
+	
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-        	<button type="button" class="navbar-toggle" data-toggle="collapse" 
-	         	data-target="#menu">
+        	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
 	         	<span class="sr-only"></span>
 	         	<span class="icon-bar"></span>
 	         	<span class="icon-bar"></span>
 	         	<span class="icon-bar"></span>
 	      	</button>
-            <a class="navbar-brand" href="main.html">RakudaPack</a>
+            <a class="navbar-brand" href="{{url('/')}}">RakudaPack</a>
         </div>
         
         <div class="collapse navbar-collapse" id="menu">
 	      	<ul class="nav navbar-nav navbar-right">
 	         	<li>
                     <div class="btn-group" role="group" >
-                    	<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">我要發任務</button>
-                    	<button type="button" class="btn btn-default navbar-btn" href="main.html">我要接任務</button>
+                    	<a type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">我要發任務</a>
+                    	<a type="button" class="btn btn-default navbar-btn" href="{{url('/')}}">我要接任務</a>
 					  	
 					</div>
                     <!-- Modal -->
@@ -161,14 +157,14 @@
             		</div>
                 </li>
                 <li>
-                    <a href="point.html"><span class="badge badge-important">100</span>點</a>
+                    <a href="point"><span class="badge badge-important">100</span>點</a>
                 </li>
                 <li class="dropdown">
                 	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> username <span class="caret"></span></a>
                 	<ul class="dropdown-menu" role="menu">
-		               	<li><a href="member.html">會員資料</a></li>
-		               	<li><a href="mission.html">任務記錄</a></li>
-		               	<li><a href="point.html">點數記錄</a></li>
+		               	<li><a href="member">會員資料</a></li>
+		               	<li><a href="mission">任務記錄</a></li>
+		               	<li><a href="point">點數記錄</a></li>
 		               	<li class="divider"></li>
 		               	<li><a href="#">登出</a></li>
                 	</ul>
