@@ -6,7 +6,7 @@
 
 <title>任務記錄 - RakudaPack</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/css/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script></head>
 <body>
@@ -208,7 +208,7 @@
                                 <td>2014/5/13 24:00</td>
                                 <td><button class="btn btn-success">完成</button></td>
                                 <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                                <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
                             <tr>
                                 <td>2014/5/12</td>
@@ -218,7 +218,7 @@
                                 <td>2014/5/13 24:00</td>
                                 <td><button class="btn btn-danger">取消</button></td>
                                 <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                                <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
                             <tr>
                                 <td>2014/5/12</td>
@@ -228,7 +228,7 @@
                                 <td>2014/5/13 24:00</td>
                                 <td><button class="btn btn-warning">進行</button></td>
                                 <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                                <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
                             
                         </table>   
@@ -240,7 +240,7 @@
                                 <li><a href="#">4</a></li>
                                 <li><a href="#">5</a></li>
                             </ul>
-                        </div> 
+                        </div>   
                     </div>
                     <div class="tab-pane"  id="accept2">
                         <table class="table">
@@ -262,7 +262,7 @@
                                 <td>2014/5/13 24:00</td>
                                 <td><button class="btn btn-primary">完成</button></td>
                                 <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
-                                <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
                         </table> 
                         <div class="col-md-offset-5">
