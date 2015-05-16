@@ -71,7 +71,7 @@ class UsersController extends Controller{
 			$password = Users::where('username', '=', $request->get('username'))->first()->password;
 			if(Hash::check($request->get('password'), $password)){
 				$token = Hash::make(
-					Users::where('username', '=', $request->get('username'))->first()->password.
+					Users::where('username', '=', $request->get('username'))->first()->username.
 					time()
 				);
 
@@ -86,11 +86,12 @@ class UsersController extends Controller{
 				$get = Tokens::create([//先存基本資料
 					'user_id' => Users::where('username', '=', $request->get('username'))->first()->id,
 					'token' => $token,
-					'ip' => $ip
+					'ip' => $ip,
+					'expiretime' => time() + 6*60*60
 				]);
-				$expiretime = strtotime(Tokens::where('token', '=', $token)->first()->created_at) + 6*60*60;
-				//補上expiretime
-				$get = Tokens::find($token)->update(['expiretime' => date("Y-m-d H:i:s", $expiretime)]);
+				// $expiretime = strtotime(Tokens::where('token', '=', $token)->first()->created_at) + 6*60*60;
+				// //補上expiretime
+				// $get = Tokens::find($token)->update(['expiretime' => date("Y-m-d H:i:s", $expiretime)]);
 				$result = array('message' => 'success', 'code' => 1, 'token' => $token);
 				return response()->json($result);
 			}

@@ -15,10 +15,25 @@ use App\Schools;
 Route::post('/users/register','UsersController@postRegister');
 Route::get('/users/login', 'UsersController@getLogin');
 Route::group(['middleware' => 'check'], function(){
+	//users after logined
 	Route::get('/users/logout','UsersController@getLogout');
 	Route::get('/users/data','UsersController@getData');
 	Route::put('/users/data','UsersController@putData');
 	Route::put('/users/password','UsersController@putPassword');
+	//missions after logined
+	Route::get('/missions/all', 'MissionsController@getAll');
+	Route::get('/missions/me/receiver/now', 'MissionsController@getRecNow');
+	Route::get('/missions/me/creator/now', 'MissionsController@getCreNow');
+	Route::get('/missions/me/receiver/history', 'MissionsController@getRecHis');
+	Route::get('/missions/me/Creator/history', 'MissionsController@getCreHis');
+	Route::get('/missions/id', 'MissionsController@getId');
+	Route::get('/missions/coordinate', 'MissionsController@getCoor');
+	Route::post('/missions', 'MissionsController@postMission');
+	Route::put('/missions', 'MissionsController@putMission');
+	Route::put('/missions/cancel', 'MissionsController@putMissCan');
+	Route::put('/missions/accept', 'MissionsController@putMissAcc');
+	Route::put('/missions/finish', 'MissionsController@putMissFin');
+
 });
 Route::get('/schools', function(){
 	$schools = Schools::all();
