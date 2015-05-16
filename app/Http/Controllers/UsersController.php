@@ -87,7 +87,7 @@ class UsersController extends Controller{
 					'user_id' => Users::where('username', '=', $request->get('username'))->first()->id,
 					'token' => $token,
 					'ip' => $ip,
-					'expiretime' => time() + 6*60*60
+					'expiretime' => date('Y-m-d h:i:s',time()+6*60*60)
 				]);
 				// $expiretime = strtotime(Tokens::where('token', '=', $token)->first()->created_at) + 6*60*60;
 				// //補上expiretime
@@ -105,11 +105,7 @@ class UsersController extends Controller{
 	}
 
 	public function getLogout(Request $request){
-		//$this->middleware('check');
-		$validator = Validator::make(
-			['token'=>$request->get('token')],
-			['token'=>'required|exists:tokens,token']
-		);
+
 		$get = Tokens::find($request->get('token'))->delete();
 		$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
 		Session::flush();
@@ -117,11 +113,7 @@ class UsersController extends Controller{
 	}
 
 	public function getData(Request $request){
-		$this->middleware('check');
-		$validator = Validator::make(
-			['token'=>$request->get('token')],
-			['token'=>'required|exists:tokens,token']
-		);
+
 		$result = Users::where('id', '=', Session::get('uid'))->first();
 		$result = array(
 			'name' => $result->name, 
@@ -135,26 +127,41 @@ class UsersController extends Controller{
 
 	public function putData(Request $request){
 		//$this->middleware('check');
-		$validator = Validator::make(
+		if($request->mail === Users::where('id', '=', Session::get('uid'))->first()->mail){
+
+			$validator = Validator::make(
 			[
-				'token' => $request->get('token'),
+				'name' => $request->get('name'),
+				'school_id' => $request->get('school_id')
+			],
+			[
+				'name'=>'required',
+				'school_id'=>'required|exists:schools,id'
+			]
+			);
+		}
+		else{
+			$validator = Validator::make(
+			[
 				'name' => $request->get('name'),
 				'mail' => $request->get('mail'),
 				'school_id' => $request->get('school_id')
 			],
 			[
-				'token'=>'required|exists:tokens,token',
 				'name'=>'required',
 				'mail'=>'required|email|unique:users,mail',
 				'school_id'=>'required|exists:schools,id'
 			]
-		);
+			);
+		}
+		
 		if ($validator->fails()){
 			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
 		}
 		else{
-			$put = Users::where('id', '=', Session::get('uid'))->first()->update([
+			$put = Users::where('id', '=', Session::get('uid'))->first()
+			->update([
 				'name' => $request->name,
 				'mail' => $request->mail,
 				'school_id' => $request->school_id
@@ -167,13 +174,11 @@ class UsersController extends Controller{
 	public function putPassword(Request $request){
 		$validator = Validator::make(
 			[
-				'token' => $request->get('token'),
 				'old_password' => $request->get('old_password'),
 				'new_password'=>$request->get('new_password'),
 				'new_password_confirmation'=>$request->get('new_password_confirmation')
 			],
 			[
-				'token' => 'required|exists:tokens,token',
 				'old_password' => 'required|min:8|max:100',
 				'new_password' => 'required|min:8|max:100|confirmed',
 				'new_password_confirmation' => 'required'
