@@ -14,7 +14,6 @@ use App\Schools;
 //Route::controller('users', 'UsersController');
 Route::post('/users/register','UsersController@postRegister');
 Route::get('/users/login', 'UsersController@getLogin');
-//Route::put('/users/data','UsersController@putData');
 Route::group(['middleware' => 'check'], function(){
 	//users after logined
 	Route::get('/users/logout','UsersController@getLogout');
