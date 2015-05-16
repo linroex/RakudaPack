@@ -12,7 +12,17 @@
 		})
 		$('#myModal2').on('shown.bs.modal', function () {
 			$('#myInput').focus()
-		})		
+		})	
+
+		$(document).ready(function(){
+			$("#submit").click(function(e){
+				e.preventDefault();
+				var params = $("form").serialize();
+				$.post("/users/login" , params, function(data) {
+					console.log(data);
+				});
+			})
+		});
 	</script>
 </head>
 <body>
