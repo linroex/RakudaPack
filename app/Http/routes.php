@@ -1,5 +1,5 @@
 <?php
-
+use App\Schools;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,4 +11,17 @@
 |
 */
 
-Route::controller('users', 'UsersController');
+//Route::controller('users', 'UsersController');
+Route::post('/users/register','UsersController@postRegister');
+Route::get('/users/login', 'UsersController@getLogin');
+Route::group(['middleware' => 'check'], function(){
+	Route::get('/users/logout','UsersController@getLogout');
+	Route::get('/users/data','UsersController@getData');
+	Route::put('/users/data','UsersController@putData');
+	Route::put('/users/password','UsersController@putPassword');
+});
+Route::get('/schools', function(){
+	$schools = Schools::all();
+	$result = array('message' => 'success', 'code' => 1, 'data' => $schools);
+	return response()->json($result);	
+});

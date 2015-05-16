@@ -5,4 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model{
 	protected $table = 'users';
 	protected $guarded = ['id'];
+
+	public function schools(){
+		return $this->hasOne('App\Schools', 'id', 'school_id');
+	}
 }
