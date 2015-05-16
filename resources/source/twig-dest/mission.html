@@ -21,11 +21,19 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
+        	<button type="button" class="navbar-toggle" data-toggle="collapse" 
+	         	data-target="#menu">
+	         	<span class="sr-only"></span>
+	         	<span class="icon-bar"></span>
+	         	<span class="icon-bar"></span>
+	         	<span class="icon-bar"></span>
+	      	</button>
             <a class="navbar-brand" href="main.html">RakudaPack</a>
         </div>
-        <div>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
+        
+        <div class="collapse navbar-collapse" id="menu">
+	      	<ul class="nav navbar-nav navbar-right">
+	         	<li>
                     <div class="btn-group" role="group" >
                     	<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">我要發任務</button>
                     	<button type="button" class="btn btn-default navbar-btn" href="main.html">我要接任務</button>
@@ -46,7 +54,7 @@
                         	        </div>
                                 	<div class="form-group">
 	                                    <label for="where">面交地點</label>
-	                                    <input type="text" class="form-control" id="where" placeholder="請輸入校園地點（如：小福2樓），並點選下列地圖">
+	                                    <input type="text" class="form-control" id="where" placeholder="請輸入校園地點（如：體育館2樓），並點選下列地圖">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="when">面交時間</label>
@@ -55,16 +63,16 @@
 	                                <div class="form-group">
 	                                    <label for="point">點數</label>
 	                                    <select class="form-control">
-	                                        <option>5點</option>
-	                                        <option>10點</option>
-	                                        <option>15點</option>
-	                                        <option>20點</option>
-	                                        <option>25點</option>
-	                                        <option>30點</option>
-	                                        <option>35點</option>
-	                                        <option>40點</option>
-	                                        <option>45點</option>
-	                                        <option>50點</option>
+	                                        <option>5</option>
+	                                        <option>10</option>
+	                                        <option>15</option>
+	                                        <option>20</option>
+	                                        <option>25</option>
+	                                        <option>30</option>
+	                                        <option>35</option>
+	                                        <option>40</option>
+	                                        <option>45</option>
+	                                        <option>50</option>
 	                                    </select>
 	                                </div>
 	                                <div>
@@ -163,8 +171,8 @@
 		               	<li><a href="#">登出</a></li>
                 	</ul>
             	</li>
-            </ul>
-        </div>
+	      	</ul>
+	   	</div>
     </div>
 </nav>	
 
@@ -187,6 +195,7 @@
                                 <th>對象</th>     
                                 <th>任務名稱</th>
                                 <th>點數</th>
+                                <th>結束時間</th>
                                 <th>狀態</th>
                                 <th>檢視</th>
                                 <th>聊天室</th>
@@ -196,8 +205,9 @@
                                 <td>Smith</td>        
                                 <td>blablablablablabla</td>
                                 <td>50</td>
-                                <td><button class="btn btn-primary">完成</button></td>
-                                <td><button class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
+                                <td>2014/5/13 24:00</td>
+                                <td><button class="btn btn-success">完成</button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                                 <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
                             <tr>
@@ -205,8 +215,9 @@
                                 <td>Smith</td>        
                                 <td>blablablablablabla</td>
                                 <td>50</td>
-                                <td><button class="btn btn-primary">完成</button></td>
-                                <td><button class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
+                                <td>2014/5/13 24:00</td>
+                                <td><button class="btn btn-danger">取消</button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                                 <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
                             <tr>
@@ -214,12 +225,22 @@
                                 <td>Smith</td>        
                                 <td>blablablablablabla</td>
                                 <td>50</td>
-                                <td><button class="btn btn-primary">完成</button></td>
-                                <td><button class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
+                                <td>2014/5/13 24:00</td>
+                                <td><button class="btn btn-warning">進行</button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                                 <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
                             
-                        </table>    
+                        </table>   
+                        <div class="col-md-offset-5">
+                            <ul class="pagination pagination-sm">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                            </ul>
+                        </div> 
                     </div>
                     <div class="tab-pane"  id="accept2">
                         <table class="table">
@@ -228,6 +249,7 @@
                                 <th>對象</th>     
                                 <th>任務名稱</th>
                                 <th>點數</th>
+                                <th>結束時間</th>
                                 <th>狀態</th>
                                 <th>檢視</th>
                                 <th>聊天室</th>
@@ -237,12 +259,25 @@
                                 <td>Smith</td>        
                                 <td>blablablablablabla</td>
                                 <td>50</td>
+                                <td>2014/5/13 24:00</td>
                                 <td><button class="btn btn-primary">完成</button></td>
-                                <td><button class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></td>
                                 <td><button class="btn btn-info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button></td>
                             </tr>
-                        </table>    
+                        </table> 
+                        <div class="col-md-offset-5">
+                            <ul class="pagination pagination-sm">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                            </ul>
+                        </div>
+            
+
                     </div>
+                    
             	</div>
 
 

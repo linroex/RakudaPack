@@ -44,10 +44,10 @@
 	</div>
 </nav>
 	
-	
+	<h2 class="col-md-offset-4 col-md-8">歡迎加入RakudaPack的行列！</h2>
 
-	<div class="col-md-offset-2 col-md-8">
-		<form role="form" class="col-md-offset-3 col-md-6">
+	<div >
+		<form role="form" class="col-md-offset-4 col-md-4">
     		<div class="form-group">
       			<label for="realname">真實姓名</label>
       			<input type="text" name="name" class="form-control" id="realname" placeholder="Enter your real name">
@@ -65,11 +65,11 @@
       			<input type="email" name="mail" class="form-control" id="email" placeholder='Enter "school" email'>
     		</div>
     		<div class="form-group">
-      			<label for="username">帳號（請輸入100字內英文、數字）</label>
+      			<label for="username">帳號</label>
       			<input type="text" name="username" class="form-control" id="username" placeholder="Enter your username">
     		</div>
     		<div class="form-group">
-      			<label for="pwd">密碼</label>
+      			<label for="pwd">密碼（請輸入8字內英文、數字）</label>
       			<input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password">
     		</div>
     		<div class="form-group">
