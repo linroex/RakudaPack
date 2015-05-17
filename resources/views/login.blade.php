@@ -49,30 +49,30 @@
 		    </div>
 		</div>
 	</nav>
+	<div class=" col-md-offset-3 col-md-6">
+		<div class="panel panel-default">
+		  <div class="panel-heading">登入</div>
+		  <div class="panel-body">
+		    <form role="form">
+	    		<div class="form-group">
+	      			<label for="username">帳號</label>
+	      			<input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
+	    		</div>
+	    		<div class="form-group">
+	      			<label for="pwd">密碼</label>
+	      			<input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
+	    		</div>
+	    		<div class="form-group">        
+			      	<div class="col-md-offset-5 col-sm-10">
+			        	<button class="btn btn-primary" type="submit">Submit</button>
+			      	</div>
+			    </div>
+
+		  	</form>
+		  </div>
+		</div>
+	</div>
 	
 
-	<div id="login_form" class="col-md-offset-4 col-md-4">
-		
-		<h3 class="text-center">登入</h3>
-		<div class="notify_block">
-			
-		</div>
-		<form role="form">
-    		<div class="form-group">
-      			<label for="username">帳號</label>
-      			<input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
-    		</div>
-    		<div class="form-group">
-      			<label for="pwd">密碼</label>
-      			<input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
-    		</div>
-    		<div class="form-group">        
-		      	<div class="col-sm-offset-4 col-sm-10">
-		        	<button class="btn btn-primary" type="submit">Submit</button>
-		      	</div>
-		    </div>
-
-	  	</form>
-	</div>
 </body>
 </html>

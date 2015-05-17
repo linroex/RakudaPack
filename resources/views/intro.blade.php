@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	@include('part.header', ['title'=>'關於'])
+	<title>歡迎使用RakudaPack!</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{{url('css/all.min.css')}}">
+	<link rel="stylesheet" href="{{url('css/style.css')}}">
+	<script src="{{url('js/all.min.js')}}"></script>
+	
 </head>
-<body data-spy="scroll" data-target=".navbar-fix-top" style="background-color:#fff background-image:{{url('image/img1.jpg')}}">
+<body data-spy="scroll" data-target=".navbar-fix-top" style="background-color:#fff">
   <div class="navbar navbar-inverse navbar-fix-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -37,7 +42,7 @@
     <div class="row">
       <img src="{{url('image/img1.jpg')}}" class="img-rounded">
       <div class="col-lg-8">
-        <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <p><a class="btn btn-warning btn-lg" href="{{url('register')}}" role="button">立即註冊</a></p>
       </div>
     </div>
