@@ -14,7 +14,6 @@ use App\Schools;
 //Route::controller('users', 'UsersController');
 Route::post('/users/register','UsersController@postRegister');
 Route::get('/users/login', 'UsersController@getLogin');
-//Route::put('/users/data','UsersController@putData');
 Route::group(['middleware' => 'check'], function(){
 	//users after logined
 	Route::get('/users/logout','UsersController@getLogout');
@@ -30,10 +29,10 @@ Route::group(['middleware' => 'check'], function(){
 	Route::get('/missions/id', 'MissionsController@getId');
 	Route::get('/missions/coordinate', 'MissionsController@getCoor');
 	Route::post('/missions', 'MissionsController@postMission');
-	Route::put('/missions', 'MissionsController@putMission');
+	Route::put('/missions/edit', 'MissionsController@putMission');
 	Route::put('/missions/cancel', 'MissionsController@putMissCan');
 	Route::put('/missions/accept', 'MissionsController@putMissAcc');
-	//Route::put('/missions/finish', 'MissionsController@putMissFin');
+	Route::put('/missions/finish', 'MissionsController@putMissFin');
 
 });
 Route::get('/schools', function(){

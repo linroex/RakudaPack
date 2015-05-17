@@ -87,7 +87,7 @@ class UsersController extends Controller{
 					'user_id' => Users::where('username', '=', $request->get('username'))->first()->id,
 					'token' => $token,
 					'ip' => $ip,
-					'expiretime' => date('Y-m-d h:i:s',time()+6*60*60)
+					'expiretime' => date('Y-m-d H:i:s',time()+6*60*60)
 				]);
 				// $expiretime = strtotime(Tokens::where('token', '=', $token)->first()->created_at) + 6*60*60;
 				// //補上expiretime
