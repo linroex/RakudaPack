@@ -55,6 +55,10 @@ Route::get('/register', function(){
     return view('register');
 });
 
+Route::get('/intro', function(){
+    return view('intro');
+});
+
 Route::group(['middleware'=>'permission'], function(){
     Route::get('/', function(){
         return view('main');
@@ -70,10 +74,6 @@ Route::group(['middleware'=>'permission'], function(){
 
     Route::get('/point', function(){
         return view('point');
-    });
-
-    Route::get('/intro', function(){
-        return view('intro');
     });
 
     Route::get('/logout', function(){
