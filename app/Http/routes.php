@@ -35,37 +35,41 @@ Route::group(['middleware' => 'check'], function(){
 	Route::put('/missions/finish', 'MissionsController@putMissFin');
 
 });
+
 Route::get('/schools', function(){
 	$schools = Schools::all();
 	$result = array('message' => 'success', 'code' => 1, 'data' => $schools);
 	return response()->json($result);	
 });
 
-Route::get('/register', function(){
-	return view('register');
-});
+// Frontend
 Route::get('/login', function(){
-	return view('login');
+    return view('login');
 });
 
-Route::get('/', function(){
-	return view('main');
-});
-Route::get('/member', function(){
-	return view('member');
-});
-Route::get('/mission', function(){
-	return view('mission');
-});
-Route::get('/point', function(){
-	return view('point');
+Route::get('/register', function(){
+    return view('register');
 });
 
-Route::get('/intro', function(){
-	return view('intro');
+Route::group(['middleware'=>'permission'], function(){
+    Route::get('/', function(){
+        return view('main');
+    });
+
+    Route::get('/member', function(){
+        return view('member');
+    });
+
+    Route::get('/mission', function(){
+        return view('mission');
+    });
+
+    Route::get('/point', function(){
+        return view('point');
+    });
+
+    Route::get('/intro', function(){
+        return view('intro');
+    });
+
 });
-
-
-
-
-

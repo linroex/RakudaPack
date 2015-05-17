@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>會員資料 - RakudaPack</title>
-	<link rel="stylesheet" href="{{url('css/all.min.css')}}">
-	<link rel="stylesheet" href="{{url('css/style.css')}}">
+	@include('part.header', ['title'=>'會員資料'])
 	<script src="{{url('js/all.min.js')}}"></script>
 	<script>
 		$('#myModal').on('shown.bs.modal', function () {

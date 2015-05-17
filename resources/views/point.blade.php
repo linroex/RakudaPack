@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <html lang="en">
-
-    <title>點數記錄 - RakudaPack</title>
-    <link rel="stylesheet" href="{{url('css/all.min.css')}}">
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
+    
+    @include('part.header', ['title'=>'點數記錄'])
     <link rel="stylesheet" href="{{url('jquery-ui.min.css')}}">
-    <script src="{{url('js/all.min.js')}}"></script>
     <script src="{{url('jquery-ui.min.js')}}"></script>
     <script>
         $(document).ready(function() {

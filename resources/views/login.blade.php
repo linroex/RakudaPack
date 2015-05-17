@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>登入 - RakudaPack</title>
-	<link rel="stylesheet" href="{{url('css/all.min.css')}}">
-	<link rel="stylesheet" href="{{url('css/style.css')}}">
-	<script src="{{url('js/all.min.js')}}"></script>
+	@include('part.header', ['title'=>'登入'])
 	<script>
 		$('#myModal').on('shown.bs.modal', function () {
 			$('#myInput').focus()
@@ -15,11 +11,24 @@
 		})	
 
 		$(document).ready(function(){
-			$("#submit").click(function(e){
+			$("button[type=submit]").click(function(e){
 				e.preventDefault();
 				var params = $("form").serialize();
-				$.post("/users/login" , params, function(data) {
-					console.log(data);
+				$.get("/users/login" , params, function(data) {
+					$(".notify_block").html('');
+
+					if(data.code == 0){
+						$.each(data.data, function(i, item){
+							$(".notify_block").append(' <div class="alert alert-danger">' + item[0] + '</div> ');
+						});
+					}else if(data.code == 1){
+						document.cookie = "token=" + data.token + ";path={{url('')}}";
+						$(".notify_block").append(' <div class="alert alert-success">登入成功</div> ');
+						setTimeout(function(){
+							window.location = "{{url('/')}}";
+						}, 500);
+					}
+
 				});
 			})
 		});
@@ -27,33 +36,35 @@
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
-  	<div class="container-fluid">
-	    <div class="navbar-header">
-	     	<a class="navbar-brand" href="{{url('/')}}">RakudaPack</a>
+	  	<div class="container-fluid">
+		    <div class="navbar-header">
+		     	<a class="navbar-brand" href="{{url('/')}}">RakudaPack</a>
+			</div>
+		    <div>
+		    
+			    <ul class="nav navbar-nav navbar-right">
+			        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
+			        <li><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li>
+			    </ul>
+		    </div>
 		</div>
-	    <div>
-	    
-		    <ul class="nav navbar-nav navbar-right">
-		        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-		        <li><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li>
-		    </ul>
-	    </div>
-	</div>
-</nav>
+	</nav>
 	
-
 
 	<div id="login_form" class="col-md-offset-4 col-md-4">
 		
-		<h3 class="col-md-offset-3">Start RakudaPack!</h3>
+		<h3 class="text-center">登入</h3>
+		<div class="notify_block">
+			
+		</div>
 		<form role="form">
     		<div class="form-group">
       			<label for="username">帳號</label>
-      			<input type="text" class="form-control" id="username" placeholder="Enter username">
+      			<input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
     		</div>
     		<div class="form-group">
       			<label for="pwd">密碼</label>
-      			<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+      			<input type="password" class="form-control" name="password" id="pwd" placeholder="Enter password">
     		</div>
     		<div class="form-group">        
 		      	<div class="col-sm-offset-4 col-sm-10">
@@ -63,6 +74,5 @@
 
 	  	</form>
 	</div>
-
 </body>
 </html>

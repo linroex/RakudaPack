@@ -71,8 +71,7 @@ class UsersController extends Controller{
 			$password = Users::where('username', '=', $request->get('username'))->first()->password;
 			if(Hash::check($request->get('password'), $password)){
 				$token = Hash::make(
-					Users::where('username', '=', $request->get('username'))->first()->username.
-					time()
+					Users::where('username', '=', $request->get('username'))->first()->username . time()
 				);
 
 				if (!empty($_SERVER["HTTP_CLIENT_IP"])){//get ip address

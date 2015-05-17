@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> - RakudaPack</title>
-	<link rel="stylesheet" href="{{url('css/all.min.css')}}">
-	<link rel="stylesheet" href="{{url('css/style.css')}}">
-	<script src="{{url('js/all.min.js')}}"></script>
+	@include('part.header', ['title'=>'首頁'])
 	<script>
 		$('#myModal').on('shown.bs.modal', function () {
 			$('#myInput').focus()

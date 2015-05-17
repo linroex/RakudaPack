@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Google Map Practice</title>
-    <link rel="stylesheet" href="{{url('css/all.min.css')}}">
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
+    @include('part.header', ['title'=>'地圖'])
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="{{url('js/all.min.js')}}"></script>
     <style>
         html, body, #map{
             width: 100%;
