@@ -75,7 +75,7 @@ class UsersController extends Controller{
 				$token = Hash::make(
 					Users::where('username', '=', $request->get('username'))->first()->username . time()
 				);
-
+				
 				if (!empty($_SERVER["HTTP_CLIENT_IP"])){//get ip address
     				$ip = $_SERVER["HTTP_CLIENT_IP"];
 				}elseif(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
@@ -83,7 +83,7 @@ class UsersController extends Controller{
 				}else{
     				$ip = $_SERVER["REMOTE_ADDR"];
 				}
-				
+
 				$get = Tokens::create([//先存基本資料
 					'user_id' => Users::where('username', '=', $request->get('username'))->first()->id,
 					'token' => $token,
@@ -120,7 +120,8 @@ class UsersController extends Controller{
 			'name' => $result->name, 
 			'username' => $result->username,
 			'school_name' => $result->schools->name,
-			'mail' => $result->mail
+			'mail' => $result->mail,
+			'point' => $result->point
 		);
 		return response()->json(array('message' => 'success', 'code' => 1, 'data' => $result));
 
