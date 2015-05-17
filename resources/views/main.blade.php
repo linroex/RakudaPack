@@ -8,7 +8,9 @@
 		})
 		$('#myModal2').on('shown.bs.modal', function () {
 			$('#myInput').focus()
-		})		
+		})	
+
+
 	</script>
 </head>
 <body>
@@ -26,27 +28,7 @@
         
         <div class="collapse navbar-collapse" id="menu">
 	      	<ul class="nav navbar-nav navbar-right">
-	         	<li>
-                    <div class="btn-group" role="group" >
-                    	<a type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">我要發任務</a>
-                    	<a type="button" class="btn btn-default navbar-btn" href="/">我要接任務</a>
-					  	
-					</div>
-                    <!-- Modal -->
-                    @include("part.newMission")
-                </li>
-                <li>
-                    <a data-toggle="modal" data-target="#myModal2"><span class="badge badge-important">4</span>項進行中任務</a>
-                    <!-- Modal -->
-                    @include("part.nowMission")
-                    
-                </li>
-                <li>
-                    <a href="point"><span class="badge badge-important">100</span>點</a>
-                </li>
-                <li class="dropdown">
-                	@include("part.dropdown")
-            	</li>
+	         	@include('part.navbar')
 	      	</ul>
 	   	</div>
     </div>
