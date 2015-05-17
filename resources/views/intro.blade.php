@@ -8,8 +8,8 @@
 	<script src="{{url('js/all.min.js')}}"></script>
 	
 </head>
-<body data-spy="scroll" data-target=".navbar-fix-top" style="background-color:#fff">
-  <div class="navbar navbar-inverse navbar-fix-top" role="navigation">
+<body data-spy="scroll" style="background-color:#fff">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,27 +24,27 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="page-scroll active"><a href="#home-slider">Home</a></li>
+          <li class="page-scroll active"><a href="#home">Home</a></li>
           <li class="page-scroll"><a href="#about">About</a></li>
           <li class="page-scroll"><a href="#service">Service</a></li>
           <li class="page-scroll"><a href="#team">Team</a></li>
-          <li class="page-scroll"><a href="login">登入</a></li>
-          <li class="page-scroll"><a href="register">快速註冊</a></li>
-          <!-- <li class="page-scroll"><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li> -->
-          <!-- <li class="page-scroll"><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li> -->
-          <!-- <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li> -->
-          <!-- <li><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li> -->
+        </ul>
       </div>
     </div>  
   </div>
   <div>
     <!-- <div class="container" style="background-image:url(../public/image/img1.jpeg)"></div> -->
-    <div class="row">
+    <div class="row" id="home">
       <img src="{{url('image/img1.jpg')}}" class="img-rounded">
-      <div class="col-lg-8">
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <p><a class="btn btn-warning btn-lg" href="{{url('register')}}" role="button">立即註冊</a></p>
-      </div>
+    </div>
+    <div class="row" id="about">
+      <img src="{{url('image/img02.jpg')}}" class="img-rounded">
+    </div>
+    <div class="row" id="service">
+      <img src="{{url('image/img3.png')}}" class="img-rounded">
+    </div>
+    <div class="row" id="team">
+      <img src="{{url('image/img4.png')}}" class="img-rounded">
     </div>
   </div>
   
