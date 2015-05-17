@@ -72,4 +72,8 @@ Route::group(['middleware'=>'permission'], function(){
         return view('intro');
     });
 
+    Route::get('/logout', function(){
+        return view('logout');
+    });
+
 });
