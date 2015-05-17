@@ -3,25 +3,48 @@
 <head>
 	@include('part.header', ['title'=>'關於'])
 </head>
-<body>
-	<nav class="navbar navbar-inverse">
-	  	<div class="container-fluid">
-		    <div class="navbar-header">
-		     	<a class="navbar-brand" href="{{url('/')}}">RakudaPack</a>
-			</div>
-		    <div>
-			    <ul class="nav navbar-nav navbar-right">
-			        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-			        <li><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li>
-			    </ul>
-		    </div>
-		</div>
-	</nav>
-	<div class="jumbotron" style="">
-	  	<h1>Hello, world!</h1>
-	  	<p>...</p>
-	  	<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-	</div>
+<body data-spy="scroll" data-target=".navbar-fix-top" style="background-color:#fff background-image:{{url('image/img1.jpg')}}">
+  <div class="navbar navbar-inverse navbar-fix-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggla navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <li>
+          <a href="#home-slider" class="navbar-brand">RakudaPack</a>
+        </li>        
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="page-scroll active"><a href="#home-slider">Home</a></li>
+          <li class="page-scroll"><a href="#about">About</a></li>
+          <li class="page-scroll"><a href="#service">Service</a></li>
+          <li class="page-scroll"><a href="#team">Team</a></li>
+          <li class="page-scroll"><a href="login">登入</a></li>
+          <li class="page-scroll"><a href="register">快速註冊</a></li>
+          <!-- <li class="page-scroll"><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li> -->
+          <!-- <li class="page-scroll"><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li> -->
+          <!-- <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li> -->
+          <!-- <li><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li> -->
+      </div>
+    </div>  
+  </div>
+  <div>
+    <!-- <div class="container" style="background-image:url(../public/image/img1.jpeg)"></div> -->
+    <div class="row">
+      <img src="{{url('image/img1.jpg')}}" class="img-rounded">
+      <div class="col-lg-8">
+        <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+        <p><a class="btn btn-warning btn-lg" href="{{url('register')}}" role="button">立即註冊</a></p>
+      </div>
+    </div>
+  </div>
+  
+
+  
 
 
 </body>
