@@ -42,13 +42,10 @@
         </div>
     </div>
 </nav>
-    
-    <h2 class="col-md-offset-4 col-md-8">歡迎加入RakudaPack的行列！</h2>
-    
-        <div class="col-md-offset-4 col-md-4">
-            <div class="notify_block">
-                
-            </div>
+    <div class=" col-md-offset-3 col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">歡迎加入RakudaPack的行列！</div>
+          <div class="panel-body">
             <form role="form" class="">
                 <div class="form-group">
                     <label for="realname">真實姓名</label>
@@ -77,13 +74,15 @@
                     <input type="password" name="password_confirmation" class="form-control" id="pwd2" placeholder="Enter password again">
                 </div>
                 <div class="form-group">        
-                    <div class="col-sm-offset-3 col-sm-10">
+                    <div class="col-md-offset-4 col-sm-10">
                         <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </div>
                 </div>
             </form>
+          </div>
         </div>
+      </div>
         
 </body>
 </html>
