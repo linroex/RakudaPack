@@ -11,10 +11,25 @@ use App\Users;
 class PointController extends Controller{
 	
 	public function getFromMe(Request $request){
-		
+		$gets = Trades::where('from', '=', Session::get('uid'))->get();
+		foreach ($gets as $get) {
+			$get->from = Users::find($get->from)->name;
+			$get->to = Users::find($get->to)->name;
+			$get->type_id = Missions::find($get->type_id)->name;
+		}
+		$result = array('message' => 'success', 'code' => 1, 'data' => $gets);
+		return response()->json($result);
 	}
 
 	public function getToMe(Request $request){
+		$gets = Trades::where('to', '=', Session::get('uid'))->get();
+		foreach ($gets as $get) {
+			$get->from = Users::find($get->from)->name;
+			$get->to = Users::find($get->to)->name;
+			$get->type_id = Missions::find($get->type_id)->name;
+		}
+		$result = array('message' => 'success', 'code' => 1, 'data' => $gets);
+		return response()->json($result);
 	}
 
 	public function postTrade(Request $request){
