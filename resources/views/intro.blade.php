@@ -18,9 +18,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <li>
-          <a href="#home-slider" class="navbar-brand">RakudaPack</a>
-        </li>        
+        <a class="navbar-brand" rel="home" href="#home">
+          <img src="{{url('image/logo_rakuda_s.png')}}">
+        </a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
