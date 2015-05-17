@@ -117,7 +117,8 @@ class UsersController extends Controller{
 			'name' => $result->name, 
 			'username' => $result->username,
 			'school_name' => $result->schools->name,
-			'mail' => $result->mail
+			'mail' => $result->mail,
+			'point' => $result->point
 		);
 		return response()->json(array('message' => 'success', 'code' => 1, 'data' => $result));
 
