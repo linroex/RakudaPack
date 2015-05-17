@@ -33,6 +33,10 @@ Route::group(['middleware' => 'check'], function(){
 	Route::put('/missions/cancel', 'MissionsController@putMissCan');
 	Route::put('/missions/accept', 'MissionsController@putMissAcc');
 	Route::put('/missions/finish', 'MissionsController@putMissFin');
+	//point trade after logined
+	Route::get('/point/from/me', 'PointController@getFromMe');
+	Route::get('/point/to/me', 'PointController@getToMe');
+	Route::post('/point/trade', 'PointController@postTrade');
 
 });
 Route::get('/schools', function(){

@@ -71,9 +71,7 @@ class UsersController extends Controller{
 			$password = Users::where('username', '=', $request->get('username'))->first()->password;
 			if(Hash::check($request->get('password'), $password)){
 				$token = Hash::make(
-					Users::where('username', '=', $request->get('username'))->first()->username.
-					time()
-				);
+					Users::where('username', '=', $request->get('username'))->first()->username . time());
 
 				if (!empty($_SERVER["HTTP_CLIENT_IP"])){//get ip address
     				$ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -82,7 +80,7 @@ class UsersController extends Controller{
 				}else{
     				$ip = $_SERVER["REMOTE_ADDR"];
 				}
-				
+
 				$get = Tokens::create([//先存基本資料
 					'user_id' => Users::where('username', '=', $request->get('username'))->first()->id,
 					'token' => $token,

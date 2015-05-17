@@ -7,7 +7,8 @@ use App\Tokens;
 class CheckMiddleware{
 	public function handle($request, Closure $next){
 		if(Tokens::find($request->token)){
-			$uid = Tokens::find($request->token)->first()->user_id;
+			Session::flush();
+			$uid = Tokens::find($request->token)->user_id;
 			Session::put('uid', $uid);
 			return $next($request);
 		}
