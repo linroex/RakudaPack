@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>歡迎使用RakudaPack!</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="{{url('css/all.min.css')}}">
-	<link rel="stylesheet" href="{{url('css/style.css')}}">
-	<script src="{{url('js/all.min.js')}}"></script>
-	
+	@include('part.header', ['title'=>'關於'])
 </head>
 <body data-spy="scroll" data-target=".navbar-fix-top" style="background-color:#fff background-image:{{url('image/img1.jpg')}}">
   <div class="navbar navbar-inverse navbar-fix-top" role="navigation">

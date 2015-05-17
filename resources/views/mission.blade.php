@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>任務記錄 - RakudaPack</title>
-    <link rel="stylesheet" href="{{url('css/all.min.css')}}">
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
-    <script src="{{url('js/all.min.js')}}"></script>
+    @include('part.header', ['title'=>'任務記錄'])
     <script>
         $('#myModal').on('shown.bs.modal', function () {
             $('#myInput').focus()
@@ -19,58 +15,31 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-        	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-	         	<span class="sr-only"></span>
-	         	<span class="icon-bar"></span>
-	         	<span class="icon-bar"></span>
-	         	<span class="icon-bar"></span>
-	      	</button>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="{{url('/')}}">RakudaPack</a>
         </div>
         
         <div class="collapse navbar-collapse" id="menu">
-	      	<ul class="nav navbar-nav navbar-right">
-	         	<li>
-                    <div class="btn-group" role="group" >
-                    	<a type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">我要發任務</a>
-                        <a type="button" class="btn btn-default navbar-btn" href="{{url('/')}}">我要接任務</a>
-					  	
-					</div>
-                    <!-- Modal -->
-                    @include("part.newMission")                   
-                </li>
-                <li>
-                    <a data-toggle="modal" data-target="#myModal2"><span class="badge badge-important">4</span>項進行中任務</a>
-                    <!-- Modal -->
-                    @include("part.nowMission")                   
-                    
-                </li>
-                <li>
-                    <a href="point"><span class="badge badge-important">100</span>點</a>
-                </li>
-                <li class="dropdown">
-                	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> username <span class="caret"></span></a>
-                	<ul class="dropdown-menu" role="menu">
-		               	<li><a href="member">會員資料</a></li>
-		               	<li><a href="mission">任務記錄</a></li>
-		               	<li><a href="point">點數記錄</a></li>
-		               	<li class="divider"></li>
-		               	<li><a href="#">登出</a></li>
-                	</ul>
-            	</li>
-	      	</ul>
-	   	</div>
+            <ul class="nav navbar-nav navbar-right">
+                @include('part.navbar')
+            </ul>
+        </div>
     </div>
-</nav>	
+</nav>  
 
-   	<div class="col-md-offset-2 col-md-8">
+    <div class="col-md-offset-2 col-md-8">
 
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title">任務記錄</h3>
-			</div>
-		  	<div class="panel-body">
-		  		<ul class="nav nav-tabs">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">任務記錄</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
                     <li  class="active"><a href="#request2" data-toggle="tab">發出的任務</a></li>
                     <li><a href="#accept2" data-toggle="tab">收到的任務</a></li>
                 </ul>
@@ -165,15 +134,15 @@
 
                     </div>
                     
-            	</div>
+                </div>
 
 
-			</div>
-			
-		</div>
-	</div>
+            </div>
+            
+        </div>
+    </div>
 
 
-	
+    
 </body>
 </html>

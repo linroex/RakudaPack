@@ -51,6 +51,7 @@ class UsersController extends Controller{
 	
 
 	public function getLogin(Request $request){
+		
 		$validator = Validator::make(
 			[
 				'username'=>$request->get('username'),
@@ -61,18 +62,18 @@ class UsersController extends Controller{
 				'password'=>'required|min:8|max:100'
 			]
 		);
-
-		if ($validator->fails()){
+		
+		if($validator->fails()){
 			//$result = $validator->errors()->all();
 			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
 			$password = Users::where('username', '=', $request->get('username'))->first()->password;
+			
 			if(Hash::check($request->get('password'), $password)){
+				
 				$token = Hash::make(
-					Users::where('username', '=', $request->get('username'))->first()->username.
-					time()
+					Users::where('username', '=', $request->get('username'))->first()->username . time()
 				);
 
 				if (!empty($_SERVER["HTTP_CLIENT_IP"])){//get ip address

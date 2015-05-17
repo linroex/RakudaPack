@@ -1,10 +1,10 @@
 <?php namespace App\Http\Middleware;
 
-use Session;
 use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Cookie;
+use App\Tokens;
 
-class VerifyCsrfToken extends BaseVerifier {
+class UserPermission {
 
 	/**
 	 * Handle an incoming request.
@@ -15,8 +15,15 @@ class VerifyCsrfToken extends BaseVerifier {
 	 */
 	public function handle($request, Closure $next)
 	{
+		if(!isset($_COOKIE['token'])){
+			return redirect("/login");
+		}
+		
+		if(Tokens::find($_COOKIE['token']) === null){
+			return redirect("/login");
+		}
+
 		return $next($request);
-		// return parent::handle($request, $next);
 	}
 
 }
