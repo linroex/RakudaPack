@@ -34,21 +34,39 @@
       </div>
     </div>  
   </div>
-  <div>
-    <!-- <div class="container" style="background-image:url(../public/image/img1.jpeg)"></div> -->
-    <div class="row" id="home">
-      <img src="{{url('image/img1.jpg')}}" class="img-rounded">
-    </div>
-    <div class="row" id="about">
-      <img src="{{url('image/img02.jpg')}}" class="img-rounded">
-    </div>
-    <div class="row" id="service">
-      <img src="{{url('image/img3.png')}}" class="img-rounded">
-    </div>
-   <!--  <div class="row" id="team">
-      <img src="{{url('image/img4.png')}}" class="img-rounded">
-    </div> -->
+  <!-- <div class="container" style="background-image:url(../public/image/img1.jpeg)"></div> -->
+  <div class="row" id="home">
+    <img src="{{url('image/img1.jpg')}}" class="img-rounded">
   </div>
+  <div class="row" id="about">
+    <img src="{{url('image/img02.jpg')}}" class="img-rounded">
+  </div>
+
+
+<!--   <div class="row" id="service">
+    <img src="{{url('image/img3.png')}}" class="img-rounded">
+  </div> -->
+
+  <div id="service" class="row" style="background-color:#fff; height:650px">
+    <br><br><br>
+    <h1 style="color:#fa8072" class="col-md-offset-2">你可以選擇 You can choose to...</h1>
+    <br><br><br><br>
+    <div class="col-md-offset-3 col-md-3">
+      <img src="{{url('image/icon1.png')}}" alt="Linroex" style="width:200px;height:200px">
+      <h3 style="color:#fa8072;" class="col-md-offset-2">接受任務</h3> 
+      <h6 style="color:#918E89;" class="col-md-offset-1">點選地圖，找到想要完成的任務</h6>    
+    </div>
+    <div class="col-md-3">
+      <img src="{{url('image/icon2.png')}}" alt="Yuchiang" style="width:200px;height:200px">
+      <h3 style="color:#fa8072" class="col-md-offset-2">發起任務</h3>
+      <h6 style="color:#918E89;" class="col-md-offset-1">填寫表單，發送自己的需求</h6>    
+    </div>
+    
+  </div>
+
+  <!--  <div class="row" id="team">
+    <img src="{{url('image/img4.png')}}" class="img-rounded">
+  </div> -->
   
 
   <div id="team" class="row" style="background-color:#F2E7D4; height:650px">
@@ -64,7 +82,6 @@
       <img src="{{url('image/mem_yu.png')}}" alt="Yuchiang" style="width:200px;height:200px">
       <h3 style="color:#fa8072">Front End Developer</h3>
       <h6 style="color:#918E89;" class="col-md-offset-2">Yuchiang from NTU</h6>    
-
     </div>
     <div class="col-md-3">
       <img src="{{url('image/mem_seisyo.png')}}" alt="Seisyo" style="width:200px;height:200px">
