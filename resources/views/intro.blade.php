@@ -28,6 +28,8 @@
           <li class="page-scroll"><a href="#about">About</a></li>
           <li class="page-scroll"><a href="#service">Service</a></li>
           <li class="page-scroll"><a href="#team">Team</a></li>
+          <li class="page-scroll"><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
+          <li class="page-scroll"><a href="register"><span class="glyphicon glyphicon-user"></span> 快速註冊</a></li>
         </ul>
       </div>
     </div>  
@@ -43,11 +45,33 @@
     <div class="row" id="service">
       <img src="{{url('image/img3.png')}}" class="img-rounded">
     </div>
-    <div class="row" id="team">
+   <!--  <div class="row" id="team">
       <img src="{{url('image/img4.png')}}" class="img-rounded">
-    </div>
+    </div> -->
   </div>
   
+
+  <div id="team" class="row" style="background-color:#F2E7D4; height:650px">
+    <br><br><br>
+    <h1 style="color:#fa8072" class="col-md-offset-2">團隊介紹 About Us</h1>
+    <br><br><br><br>
+    <div class="col-md-offset-2 col-md-3">
+      <img src="{{url('image/mem_linroex.png')}}" alt="Linroex" style="width:200px;height:200px">
+      <h3 style="color:#fa8072;" class="col-md-offset-3">CEO</h3>    
+      <h6 style="color:#918E89;" class="col-md-offset-2">Linroex from NTUST</h6>    
+    </div>
+    <div class="col-md-3">
+      <img src="{{url('image/mem_yu.png')}}" alt="Yuchiang" style="width:200px;height:200px">
+      <h3 style="color:#fa8072">Front End Developer</h3>
+      <h6 style="color:#918E89;" class="col-md-offset-2">Yuchiang from NTU</h6>    
+
+    </div>
+    <div class="col-md-3">
+      <img src="{{url('image/mem_seisyo.png')}}" alt="Seisyo" style="width:200px;height:200px">
+      <h3 style="color:#fa8072">Back End Developer</h3>
+      <h6 style="color:#918E89;" class="col-md-offset-2">Seisyo from NTUST</h6>    
+    </div>
+  </div>
 
   
 
