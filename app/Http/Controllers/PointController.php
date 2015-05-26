@@ -11,6 +11,7 @@ use App\Users;
 class PointController extends Controller{
 	
 	public function getFromMe(Request $request){
+		
 		$gets = Trades::where('from', '=', Session::get('uid'))->get();
 		foreach ($gets as $get) {
 			$get->from = Users::find($get->from)->name;
@@ -22,6 +23,7 @@ class PointController extends Controller{
 	}
 
 	public function getToMe(Request $request){
+		
 		$gets = Trades::where('to', '=', Session::get('uid'))->get();
 		foreach ($gets as $get) {
 			$get->from = Users::find($get->from)->name;
@@ -33,6 +35,7 @@ class PointController extends Controller{
 	}
 
 	public function postTrade(Request $request){
+		
 		$validator = Validator::make(
 			[
 				'id'=>$request->get('id'),
@@ -44,10 +47,11 @@ class PointController extends Controller{
 			]
 		);
 		if($validator->fails()){
+			
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+			
+		}else{
 			$res = Missions::where('id', '=', $request->get('id'))->first();
 			
 			if(Session::get('uid') === $res->creator){

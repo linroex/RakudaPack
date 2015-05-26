@@ -11,6 +11,7 @@ use Validator;
 class UsersController extends Controller{
 
 	public function postRegister(Request $request){
+		
 		$validator = Validator::make(
 			[
 				'name'=>$request->get('name'),
@@ -30,10 +31,12 @@ class UsersController extends Controller{
 			]
 		);
 		if ($validator->fails()){
+			
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		
+		}else{
+			
 			$post = Users::create([
 				'name' => $request->get('name'),
 				'username' => $request->get('username'),
@@ -51,6 +54,7 @@ class UsersController extends Controller{
 	
 
 	public function getLogin(Request $request){
+		
 		$validator = Validator::make(
 			[
 				'username'=>$request->get('username'),
@@ -66,9 +70,10 @@ class UsersController extends Controller{
 			//$result = $validator->errors()->all();
 			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
+			
 			$password = Users::where('username', '=', $request->get('username'))->first()->password;
+			
 			if(Hash::check($request->get('password'), $password)){
 				$token = Hash::make(
 					Users::where('username', '=', $request->get('username'))->first()->username . time());
@@ -92,8 +97,7 @@ class UsersController extends Controller{
 				// $get = Tokens::find($token)->update(['expiretime' => date("Y-m-d H:i:s", $expiretime)]);
 				$result = array('message' => 'success', 'code' => 1, 'token' => $token);
 				return response()->json($result);
-			}
-			else{
+			}else{
 				//$result = $validator->errors()->all();
 				$result = array('message' => 'failed', 'code' => 0, 'data' => 'password_error');
 				return response()->json($result);
@@ -155,10 +159,12 @@ class UsersController extends Controller{
 		}
 		
 		if ($validator->fails()){
+			
 			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
 		}
 		else{
+			
 			$put = Users::where('id', '=', Session::get('uid'))->first()
 			->update([
 				'name' => $request->name,
@@ -184,10 +190,12 @@ class UsersController extends Controller{
 			]
 		);//驗證輸入
 		if ($validator->fails()){
+			
 			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}//驗證輸入格式
-		else{
+
+		}else{//驗證輸入格式
+			
 			$password = Users::where('id', '=', Session::get('uid'))->first()->password;
 			if(Hash::check($request->get('old_password'), $password)){//驗證密碼
 				$put = Users::where('id', '=', Session::get('uid'))->first()->update([
@@ -195,8 +203,7 @@ class UsersController extends Controller{
 				]);
 				$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
 				return response()->json($result);
-			}
-			else{
+			}else{
 				$result = array('message' => 'failed', 'code' => 0, 'data' => 'password_error');
 				return response()->json($result);
 			}

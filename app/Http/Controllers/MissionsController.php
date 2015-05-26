@@ -70,11 +70,12 @@ class MissionsController extends Controller{
 			['id'=>$request->get('id')],
 			['id'=>'required']
 		);
-		if ($validator->fails()){
+		if($validator->fails()){
+			
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+
+		}else{
 			$gets = Missions::where('id', '=', $request->id)->where('status', '=', 'unreceived')->get();
 			$a = array();
 			foreach($gets as $get){
@@ -96,10 +97,11 @@ class MissionsController extends Controller{
 			 'longitude'=>'required']
 		);
 		if ($validator->fails()){
+			
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+
+		}else{
 			$gets = Missions::where('latitude', '=', $request->latitude)->where('longitude', '=', $request->longitude)->where('status', '=', 'unreceived')->get();
 			$a = array();
 			foreach($gets as $get){
@@ -137,8 +139,7 @@ class MissionsController extends Controller{
 		if ($validator->fails()){
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
 			$post = Missions::create([
 				'name'=>$request->get('name'),
 				'appointime'=>$request->get('appointime'),
@@ -184,8 +185,7 @@ class MissionsController extends Controller{
 		if ($validator->fails()){
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
 			$put = Missions::where('id', '=', $request->get('id'))->first()->update([
 				'name' => $request->get('name'),
 				'appointime' => $request->get('appointime'),
@@ -209,8 +209,7 @@ class MissionsController extends Controller{
 		if ($validator->fails()){
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
 			$put = Missions::where('id', '=', $request->get('id'))->first()->update([
 				'status' => 'cancel'
 			]);
@@ -227,8 +226,7 @@ class MissionsController extends Controller{
 		if ($validator->fails()){
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
 			$put = Missions::where('id', '=', $request->get('id'))->first()->update([
 				'status' => 'finish'
 			]);
@@ -245,14 +243,12 @@ class MissionsController extends Controller{
 		if ($validator->fails()){
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
 			//dd(Missions::where('id', '=', $request->get('id'))->first()->creator . Session::get('uid'));
 			if(Session::get('uid') === Missions::where('id', '=', $request->get('id'))->first()->creator){
 				$result = array('message' => 'failed', 'code' => 0, 'data' => '不能接自己的任務');
 				return response()->json($result);
-			}
-			else{
+			}else{
 				$put = Missions::where('id', '=', $request->get('id'))->first()->update([
 					'status' => 'received',
 					'receiver' => Session::get('uid')

@@ -1,5 +1,6 @@
 <?php
 use App\Schools;
+use GuzzleHttp\Client;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -43,4 +44,12 @@ Route::get('/schools', function(){
 	$schools = Schools::all();
 	$result = array('message' => 'success', 'code' => 1, 'data' => $schools);
 	return response()->json($result);	
+});
+Route::get('/mail', function(){
+	Mail::raw('Laravel with Mailgun is easy!', function($message)
+	{
+    	$message->from('postmaster@sandbox47fc1f7d853f4fcfbfddf91e281fa6d1.mailgun.org', 'Seisyo');
+    	$message->to('seisyo1234@gmail.com');
+	});
+	echo "success!";
 });
