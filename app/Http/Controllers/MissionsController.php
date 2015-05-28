@@ -26,7 +26,6 @@ class MissionsController extends Controller{
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		
 		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
 		return response()->json($result);
 	}
@@ -37,7 +36,6 @@ class MissionsController extends Controller{
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		
 		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
 		return response()->json($result);
 	}
@@ -48,7 +46,6 @@ class MissionsController extends Controller{
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		
 		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
 		return response()->json($result);
 	}
@@ -59,7 +56,6 @@ class MissionsController extends Controller{
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		
 		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
 		return response()->json($result);
 	}
@@ -67,8 +63,8 @@ class MissionsController extends Controller{
 	public function getId(Request $request){//ID查詢(顯示"可接"詳細時用)
 		
 		$validator = Validator::make(
-			['id'=>$request->get('id')],
-			['id'=>'required']
+			['id' => $request->get('id')],
+			['id' => 'required']
 		);
 		if($validator->fails()){
 			
@@ -81,7 +77,6 @@ class MissionsController extends Controller{
 			foreach($gets as $get){
 				array_push($a, $get);
 			}
-		
 			$result = array('message' => 'success', 'code' => 1, 'data' => $a);
 			return response()->json($result);
 		}
@@ -116,14 +111,14 @@ class MissionsController extends Controller{
 	public function postMission(Request $request){
 		$validator = Validator::make(
 			[
-				'name'=>$request->get('name'),
-				'appointime'=>$request->get('appointime'),
-				'point'=>$request->get('point'),
-				'period'=>$request->get('period'),
-				'latitude'=>$request->get('latitude'),
-				'longitude'=>$request->get('longitude'),
-				'location'=>$request->get('location'),
-				'note'=>$request->get('note')
+				'name' => $request->get('name'),
+				'appointime' => $request->get('appointime'),
+				'point' => $request->get('point'),
+				'period' => $request->get('period'),
+				'latitude' => $request->get('latitude'),
+				'longitude' => $request->get('longitude'),
+				'location' => $request->get('location'),
+				'note' => $request->get('note')
 			],
 			[
 				'name' => 'required',
@@ -141,17 +136,17 @@ class MissionsController extends Controller{
 			return response()->json($result);
 		}else{
 			$post = Missions::create([
-				'name'=>$request->get('name'),
-				'appointime'=>$request->get('appointime'),
-				'point'=>$request->get('point'),
-				'period'=>$request->get('period'),
-				'latitude'=>$request->get('latitude'),
-				'longitude'=>$request->get('longitude'),
-				'location'=>$request->get('location'),
-				'note'=>$request->get('note'),
-				'status'=>'unreceived',
-				'expiretime'=>date('Y-m-d H:i:s',time() + $request->get('period')*60),
-				'creator'=>Session::get('uid')
+				'name' => $request->get('name'),
+				'appointime' => $request->get('appointime'),
+				'point' => $request->get('point'),
+				'period' => $request->get('period'),
+				'latitude' => $request->get('latitude'),
+				'longitude' => $request->get('longitude'),
+				'location' => $request->get('location'),
+				'note' => $request->get('note'),
+				'status' => 'unreceived',
+				'expiretime' => date('Y-m-d H:i:s',time() + $request->get('period')*60),
+				'creator' => Session::get('uid')
 			]);
 
 			$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
@@ -162,14 +157,14 @@ class MissionsController extends Controller{
 	public function putMission(Request $request){
 		$validator = Validator::make(
 			[
-				'id'=>$request->get('id'),
-				'name'=>$request->get('name'),
-				'appointime'=>$request->get('appointime'),
-				'point'=>$request->get('point'),
-				'latitude'=>$request->get('latitude'),
-				'longitude'=>$request->get('longitude'),
-				'location'=>$request->get('location'),
-				'note'=>$request->get('note')
+				'id' => $request->get('id'),
+				'name' => $request->get('name'),
+				'appointime' => $request->get('appointime'),
+				'point' => $request->get('point'),
+				'latitude' => $request->get('latitude'),
+				'longitude' => $request->get('longitude'),
+				'location' => $request->get('location'),
+				'note' => $request->get('note')
 			],
 			[
 				'id' => 'required|exists:missions,id',

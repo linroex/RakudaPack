@@ -74,12 +74,12 @@ class PointController extends Controller{
 					return response()->json($result);
 
 				}else{
-					$result = array('message' => 'failed', 'code' => 0, 'data' => '點數餘額不足');
+					$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '點數餘額不足']);
 					return response()->json($result);
 				}
 
 			}else{
-				$result = array('message' => 'failed', 'code' => 0, 'data' => '這不是你發的任務，所以不能送點喔');
+				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '這不是你發的任務，所以不能送點喔']);
 				return response()->json($result);
 			}
 		}

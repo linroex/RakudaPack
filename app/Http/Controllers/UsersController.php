@@ -14,23 +14,23 @@ class UsersController extends Controller{
 		
 		$validator = Validator::make(
 			[
-				'name'=>$request->get('name'),
-				'username'=>$request->get('username'),
-				'password'=>$request->get('password'),
-				'password_confirmation'=>$request->get('password_confirmation'),
-				'mail'=>$request->get('mail'),
-				'school_id'=>$request->get('school_id')
+				'name' => $request->get('name'),
+				'username' => $request->get('username'),
+				'password' => $request->get('password'),
+				'password_confirmation' => $request->get('password_confirmation'),
+				'mail' => $request->get('mail'),
+				'school_id' => $request->get('school_id')
 			],
 			[
-				'name'=>'required',
-				'username'=>'required|unique:users,username|max:100',
-				'password'=>'required|min:8|max:100|confirmed',
-				'password_confirmation'=>'required',
-				'mail'=>'required|email|unique:users,mail',
-				'school_id'=>'required|exists:schools,id'
+				'name' => 'required',
+				'username' => 'required|unique:users,username|max:100',
+				'password' => 'required|min:8|max:100|confirmed',
+				'password_confirmation' => 'required',
+				'mail' => 'required|email|unique:users,mail',
+				'school_id' => 'required|exists:schools,id'
 			]
 		);
-		if ($validator->fails()){
+		if($validator->fails()){
 			
 			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
@@ -57,12 +57,12 @@ class UsersController extends Controller{
 		
 		$validator = Validator::make(
 			[
-				'username'=>$request->get('username'),
-				'password'=>$request->get('password')
+				'username' => $request->get('username'),
+				'password' => $request->get('password')
 			],
 			[
-				'username'=>'required|max:100|exists:users,username',
-				'password'=>'required|min:8|max:100'
+				'username' => 'required|max:100|exists:users,username',
+				'password' => 'required|min:8|max:100'
 			]
 		);
 
@@ -99,7 +99,7 @@ class UsersController extends Controller{
 				return response()->json($result);
 			}else{
 				//$result = $validator->errors()->all();
-				$result = array('message' => 'failed', 'code' => 0, 'data' => 'password_error');
+				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => 'password_error']);
 				return response()->json($result);
 			}
 			
@@ -139,11 +139,10 @@ class UsersController extends Controller{
 			],
 			[
 				'name'=>'required',
-				'school_id'=>'required|exists:schools,id'
+				'school_id' => 'required|exists:schools,id'
 			]
 			);
-		}
-		else{
+		}else{
 			$validator = Validator::make(
 			[
 				'name' => $request->get('name'),
@@ -151,10 +150,10 @@ class UsersController extends Controller{
 				'school_id' => $request->get('school_id')
 			],
 			[
-				'name'=>'required',
-				'mail'=>'required|email|unique:users,mail',
-				'school_id'=>'required|exists:schools,id'
-			]
+				'name' => 'required',
+				'mail' => 'required|email|unique:users,mail',
+				'school_id' => 'required|exists:schools,id'
+			] 
 			);
 		}
 		
@@ -162,8 +161,7 @@ class UsersController extends Controller{
 			
 			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
-		}
-		else{
+		}else{
 			
 			$put = Users::where('id', '=', Session::get('uid'))->first()
 			->update([
@@ -180,8 +178,8 @@ class UsersController extends Controller{
 		$validator = Validator::make(
 			[
 				'old_password' => $request->get('old_password'),
-				'new_password'=>$request->get('new_password'),
-				'new_password_confirmation'=>$request->get('new_password_confirmation')
+				'new_password' => $request->get('new_password'),
+				'new_password_confirmation' => $request->get('new_password_confirmation')
 			],
 			[
 				'old_password' => 'required|min:8|max:100',
@@ -204,7 +202,7 @@ class UsersController extends Controller{
 				$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
 				return response()->json($result);
 			}else{
-				$result = array('message' => 'failed', 'code' => 0, 'data' => 'password_error');
+				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => 'password_error']);
 				return response()->json($result);
 			}
 
