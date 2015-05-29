@@ -10,7 +10,7 @@ class MissionsController extends Controller{
 	
 	public function getAll(Request $request){//查詢所有“可接任務”
 		
-		$gets = Missions::where('status', '=', 'unreceived') -> get();
+		$gets = Missions::where('status', '=', 'unreceived')->get();
 		$a = array();
 		foreach($gets as $get){
 			array_push($a, $get);

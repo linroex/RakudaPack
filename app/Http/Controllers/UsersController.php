@@ -109,7 +109,7 @@ class UsersController extends Controller{
 	public function getLogout(Request $request){
 
 		$get = Tokens::find($request->get('token'))->delete();
-		$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
+		$result = array('message' => 'success', 'code' => 1, 'data' => ['msg' => 'Logout Success!']);
 		Session::flush();
 		return response()->json($result);
 	}
