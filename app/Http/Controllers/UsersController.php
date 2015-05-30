@@ -95,6 +95,17 @@ class UsersController extends Controller{
 				
 		}
 	}
+	public function getConfirm(Request $request){
+		//dd(Vertify_codes::find($request->vcode)->status === 'useful');
+		if(Vertify_codes::find($request->vcode)->status === 'useful'){
+			$get = Users::where('id', '=', Vertify_codes::find($request->vcode)->user_id)->first()->update(['type' => 'official']);
+			$result = array('message' => 'success', 'code' => 1, 'data' => ['msg' => '帳號啟用成功']);
+			return response()->json($result);
+		}else{
+			$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => 'vertify_code unuseful']);
+			return response()->json($result);
+		}
+	}
 	
 	public function getLogin(Request $request){
 		
@@ -111,7 +122,7 @@ class UsersController extends Controller{
 
 		if ($validator->fails()){
 			//$result = $validator->errors()->all();
-			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
+			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
 		}else{
 			
@@ -138,7 +149,7 @@ class UsersController extends Controller{
 				// $expiretime = strtotime(Tokens::where('token', '=', $token)->first()->created_at) + 6*60*60;
 				// //補上expiretime
 				// $get = Tokens::find($token)->update(['expiretime' => date("Y-m-d H:i:s", $expiretime)]);
-				$result = array('message' => 'success', 'code' => 1, 'token' => $token);
+				$result = array('message' => 'success', 'code' => 1, 'data' => ['token' => $token]);
 				return response()->json($result);
 			}else{
 				//$result = $validator->errors()->all();
@@ -202,7 +213,7 @@ class UsersController extends Controller{
 		
 		if ($validator->fails()){
 			
-			$result = array('message' => 'vali_failed', 'code' => 0, 'data' => $validator->messages());
+			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
 			return response()->json($result);
 		}else{
 			
