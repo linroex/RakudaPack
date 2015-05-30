@@ -46,10 +46,10 @@ Route::get('/schools', function(){
 	return response()->json($result);	
 });
 Route::get('/mail', function(){
-	Mail::raw('系統分析要考試啦！', function($message)
+	Mail::send('confirm_mail', ['vcode' => '$2y$10$g92/lpJyYolVJJpcAQk2zearLDaAmoxOaZEdioXvMZceziyCZse76'], function($message)
 	{
     	$message->from('postmaster@sandbox47fc1f7d853f4fcfbfddf91e281fa6d1.mailgun.org', 'Seisyo');
-    	$message->to('linroex@coder.tw');
+    	$message->to('tavukizarm@gmail.com');
 	});
 	echo "success!";
 });

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Users;
 use App\Tokens;
 use App\Schools;
+use App\Vertify_codes;
 use Hash;
 use Session;
 use Validator;
@@ -39,33 +40,55 @@ class UsersController extends Controller{
 		}else{
 			
 			$domain = explode('@', $request->mail)[1];
-			//驗證是否符合學校信箱格式
+			//驗證是否為已登記學校信箱格式
 			if(Schools::where('domain', '=', $domain)->first()){
-
-				// $post = Users::create([
-				// 	'name' => $request->get('name'),
-				// 	'username' => $request->get('username'),
-				// 	'password' => Hash::make($request->get('password')),
-				// 	'mail' => $request->get('mail'),
-				// 	'school_id' => $request->get('school_id'),
-				// 	'point' => 0,
-				// 	'type' => 'unofficial'
-				// ]);
-				//產生信箱驗證碼
-				$vcode = Hash::make('This is vertify_code' . $request->username . $request->mail . time());
+				//判斷信箱和學校編號是否符合
+				if(Schools::where('domain', '=', $domain)->first()->id === (int)$request->school_id){
+					//暫存會員資料到users table內
+					$post = Users::create([
+						'name' => $request->get('name'),
+						'username' => $request->get('username'),
+						'password' => Hash::make($request->get('password')),
+						'mail' => $request->get('mail'),
+						'school_id' => $request->get('school_id'),
+						'point' => 0,
+						'type' => 'unofficial'
+					]);
 				
-				$result = array('message' => 'success', 'code' => 1, 'data' => ['msg' => '已發送驗證信至 ' . $request->mail]);
-				return response()->json($result);
+					//產生信箱驗證碼
+					$vcode = Hash::make('This is vertify_code' . $request->username . $request->mail . time());
+					//存取現在的user的id
+					$user_id = Users::where('username', '=', $request->username)->first()->id;
+					//清理此id的舊vertify_codes
+					$old_vcodes = Vertify_codes::where('user_id', '=', $user_id)->get();
+					foreach($old_vcodes as $old_vcode){
+						$old_vcode->update(['status' => 'unuseful']);
+					}
+					//把產生的驗證碼存入vertify_codes table
+					$vpost = Vertify_codes::create([
+						'user_id' => $user_id,
+						'vertify_code' => $vcode,
+						'status' => 'useful'
+					]);
+
+					$result = array('message' => 'success', 'code' => 1, 'data' => ['msg' => '已發送驗證信至 ' . $request->mail]);
+					return response()->json($result);
+				
+				}else{
+					
+					$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '此信箱非為其學校的網域']);
+					return response()->json($result);
+				}
+				
 			}else{
 				
-				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '信箱為非學校網域']);
+				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '信箱非為已登記學校網域']);
 				return response()->json($result);
 			}
 				
 		}
 	}
 	
-
 	public function getLogin(Request $request){
 		
 		$validator = Validator::make(
