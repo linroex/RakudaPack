@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 
 //Route::controller('users', 'UsersController');
 Route::post('/users/register','UsersController@postRegister');
+Route::get('/confirm', 'UsersController@getConfirm');
 Route::get('/users/login', 'UsersController@getLogin');
 Route::group(['middleware' => 'check'], function(){
 	//users after logined
@@ -45,11 +46,11 @@ Route::get('/schools', function(){
 	$result = array('message' => 'success', 'code' => 1, 'data' => $schools);
 	return response()->json($result);	
 });
-Route::get('/mail', function(){
-	Mail::send('confirm_mail', ['vcode' => '$2y$10$g92/lpJyYolVJJpcAQk2zearLDaAmoxOaZEdioXvMZceziyCZse76'], function($message)
-	{
-    	$message->from('postmaster@sandbox47fc1f7d853f4fcfbfddf91e281fa6d1.mailgun.org', 'Seisyo');
-    	$message->to('tavukizarm@gmail.com');
-	});
-	echo "success!";
-});
+// Route::get('/mail', function(){
+// 	Mail::send('confirm_mail', ['vcode' => '$2y$10$g92/lpJyYolVJJpcAQk2zearLDaAmoxOaZEdioXvMZceziyCZse76'], function($message)
+// 	{
+//     	$message->from('postmaster@sandbox47fc1f7d853f4fcfbfddf91e281fa6d1.mailgun.org', 'Seisyo');
+//     	$message->to('tavukizarm@gmail.com');
+// 	});
+// 	echo "success!";
+// });

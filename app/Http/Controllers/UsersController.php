@@ -9,6 +9,7 @@ use App\Vertify_codes;
 use Hash;
 use Session;
 use Validator;
+use Mail;
 
 class UsersController extends Controller{
 
@@ -70,7 +71,13 @@ class UsersController extends Controller{
 						'vertify_code' => $vcode,
 						'status' => 'useful'
 					]);
-
+					$mail = $request->mail;
+					//寄出驗證信
+					Mail::send('confirm_mail', ['vcode' => $vcode], function($message) use ($mail){
+				    	$message->from('postmaster@sandbox47fc1f7d853f4fcfbfddf91e281fa6d1.mailgun.org', 'RakudaPack');
+				    	$message->to($mail)->subject('RakudaPack Member Confirm');
+					});
+	
 					$result = array('message' => 'success', 'code' => 1, 'data' => ['msg' => '已發送驗證信至 ' . $request->mail]);
 					return response()->json($result);
 				
