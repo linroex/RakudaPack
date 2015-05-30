@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Tokens;
+use App\Schools;
 use Hash;
 use Session;
 use Validator;
@@ -37,18 +38,30 @@ class UsersController extends Controller{
 		
 		}else{
 			
-			$post = Users::create([
-				'name' => $request->get('name'),
-				'username' => $request->get('username'),
-				'password' => Hash::make($request->get('password')),
-				'mail' => $request->get('mail'),
-				'school_id' => $request->get('school_id'),
-				'point' => 0,
-				'type' => 'unofficial'
-			]);
+			$domain = explode('@', $request->mail)[1];
+			//驗證是否符合學校信箱格式
+			if(Schools::where('domain', '=', $domain)->first()){
 
-			$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
-			return response()->json($result);	
+				// $post = Users::create([
+				// 	'name' => $request->get('name'),
+				// 	'username' => $request->get('username'),
+				// 	'password' => Hash::make($request->get('password')),
+				// 	'mail' => $request->get('mail'),
+				// 	'school_id' => $request->get('school_id'),
+				// 	'point' => 0,
+				// 	'type' => 'unofficial'
+				// ]);
+				//產生信箱驗證碼
+				$vcode = Hash::make('This is vertify_code' . $request->username . $request->mail . time());
+				
+				$result = array('message' => 'success', 'code' => 1, 'data' => ['msg' => '已發送驗證信至 ' . $request->mail]);
+				return response()->json($result);
+			}else{
+				
+				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '信箱為非學校網域']);
+				return response()->json($result);
+			}
+				
 		}
 	}
 	
