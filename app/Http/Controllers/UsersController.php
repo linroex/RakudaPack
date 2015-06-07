@@ -95,6 +95,75 @@ class UsersController extends Controller{
 				
 		}
 	}
+	public function postRemail(Request $request){
+		
+		$validator = Validator::make(
+			[
+				'username' => $request->get('username'),
+				'school_id' => $request->get('school_id'),
+				'mail' => $request->get('mail')
+			],
+			[
+				'username' => 'required|max:100|exists:users,username',
+				'school_id' => 'required|exists:schools,id',
+				'mail' => 'required|email|unique:users,mail'
+			]
+		);
+		if($validator->fails()){
+			
+			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			return response()->json($result);
+		
+		}else{
+			$domain = explode('@', $request->mail)[1];
+			//驗證是否為已登記學校信箱格式
+			if(Schools::where('domain', '=', $domain)->first()){
+				//判斷信箱和學校編號是否符合
+				if(Schools::where('domain', '=', $domain)->first()->id === (int)$request->school_id){
+					//暫存會員資料到users table內
+					//dd($request->get('username'));
+					//dd(Users::where('username', '=', $request->get('username')));
+					$post = Users::where('username', '=', $request->get('username'))->first()->update(['mail' => $request->get('mail')]);	
+				
+					//產生信箱驗證碼
+					$vcode = Hash::make('This is vertify_code' . $request->username . $request->mail . time());
+					//存取現在的user的id
+					$user_id = Users::where('username', '=', $request->username)->first()->id;
+					//清理此id的舊vertify_codes
+					$old_vcodes = Vertify_codes::where('user_id', '=', $user_id)->get();
+					foreach($old_vcodes as $old_vcode){
+						$old_vcode->update(['status' => 'unuseful']);
+					}
+					//把產生的驗證碼存入vertify_codes table
+					$vpost = Vertify_codes::create([
+						'user_id' => $user_id,
+						'vertify_code' => $vcode,
+						'status' => 'useful'
+					]);
+					$mail = $request->mail;
+					//寄出驗證信
+					Mail::send('confirm_mail', ['vcode' => $vcode], function($message) use ($mail){
+				    	$message->from('postmaster@sandbox47fc1f7d853f4fcfbfddf91e281fa6d1.mailgun.org', 'RakudaPack');
+				    	$message->to($mail)->subject('RakudaPack Member Confirm');
+					});
+	
+					$result = array('message' => 'success', 'code' => 1, 'data' => ['msg' => '已發送驗證信至 ' . $request->mail]);
+					return response()->json($result);
+				
+				}else{
+					
+					$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '此信箱非為其學校的網域']);
+					return response()->json($result);
+				}
+				
+			}else{
+				
+				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '信箱非為已登記學校網域']);
+				return response()->json($result);
+			}
+		}
+
+	}
 	public function getConfirm(Request $request){
 		//dd(Vertify_codes::find($request->vcode)->status === 'useful');
 		if(Vertify_codes::find($request->vcode)->status === 'useful'){

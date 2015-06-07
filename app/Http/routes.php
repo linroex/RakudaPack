@@ -13,8 +13,9 @@ use GuzzleHttp\Client;
 */
 
 //Route::controller('users', 'UsersController');
-Route::post('/users/register','UsersController@postRegister');
-Route::get('/confirm', 'UsersController@getConfirm');
+Route::post('/users/register', 'UsersController@postRegister');
+Route::post('/users/remail', 'UsersController@postRemail');
+Route::get('/users/confirm', 'UsersController@getConfirm');
 Route::get('/users/login', 'UsersController@getLogin');
 Route::group(['middleware' => 'check'], function(){
 	//users after logined
