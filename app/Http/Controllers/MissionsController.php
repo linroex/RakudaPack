@@ -1,9 +1,10 @@
-<?php
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
+
 use App\Missions;
+
+use Validator;
 use Session;
 
 class MissionsController extends Controller{
@@ -11,52 +12,70 @@ class MissionsController extends Controller{
 	public function getAll(Request $request){//查詢所有“可接任務”
 		
 		$gets = Missions::where('status', '=', 'unreceived')->get();
-		$a = array();
+		
+		$a = [];
+		
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
+
+		$result = ['message' => 'success', 'code' => 1, 'data' => $a];
 		return response()->json($result);
 	}
 
 	public function getRecNow(Request $request){//查詢正接任務
 		
 		$gets = Missions::where('receiver', '=', Session::get('uid'))->where('status', '=', 'unreceived')->get();
-		$a = array();
+		
+		$a = [];
+		
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
+
+		$result = ['message' => 'success', 'code' => 1, 'data' => $a];
 		return response()->json($result);
 	}
 
 	public function getCreNow(Request $request){//查詢正發任務
+		
 		$gets = Missions::where('creator', '=', Session::get('uid'))->where('status', '=', 'unreceived')->get();
-		$a = array();
+		
+		$a = [];
+		
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
+
+		$result = ['message' => 'success', 'code' => 1, 'data' => $a];
 		return response()->json($result);
 	}
 
 	public function getRecHis(Request $request){//查詢接任記錄
+		
 		$gets = Missions::where('receiver', '=', Session::get('uid'))->get();
-		$a = array();
+		
+		$a = [];
+		
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
+
+		$result = ['message' => 'success', 'code' => 1, 'data' => $a];
 		return response()->json($result);
 	}
 
 	public function getCreHis(Request $request){//查詢發任記錄
+		
 		$gets = Missions::where('creator', '=', Session::get('uid'))->get();
-		$a = array();
+		
+		$a = [];
+		
 		foreach($gets as $get){
 			array_push($a, $get);
 		}
-		$result = array('message' => 'success', 'code' => 1, 'data' => $a);
+
+		$result = ['message' => 'success', 'code' => 1, 'data' => $a];
 		return response()->json($result);
 	}
 
@@ -68,16 +87,20 @@ class MissionsController extends Controller{
 		);
 		if($validator->fails()){
 			
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
 
 		}else{
+			
 			$gets = Missions::where('id', '=', $request->id)->where('status', '=', 'unreceived')->get();
-			$a = array();
+			
+			$a = [];
+			
 			foreach($gets as $get){
 				array_push($a, $get);
 			}
-			$result = array('message' => 'success', 'code' => 1, 'data' => $a);
+
+			$result = ['message' => 'success', 'code' => 1, 'data' => $a];
 			return response()->json($result);
 		}
 		
@@ -93,17 +116,23 @@ class MissionsController extends Controller{
 		);
 		if ($validator->fails()){
 			
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
 
 		}else{
-			$gets = Missions::where('latitude', '=', $request->latitude)->where('longitude', '=', $request->longitude)->where('status', '=', 'unreceived')->get();
-			$a = array();
+			
+			$gets = Missions::where('latitude', '=', $request->latitude)
+							->where('longitude', '=', $request->longitude)
+							->where('status', '=', 'unreceived')
+							->get();
+			
+			$a = [];
+			
 			foreach($gets as $get){
 				array_push($a, $get);
 			}
 		
-			$result = array('message' => 'success', 'code' => 1, 'data' => $a);
+			$result = ['message' => 'success', 'code' => 1, 'data' => $a];
 			return response()->json($result);
 		}
 	}
@@ -132,10 +161,13 @@ class MissionsController extends Controller{
 			]
 		);
 		if ($validator->fails()){
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
+
 		}else{
-			$post = Missions::create([
+			$post = Missions::create(
+			[
 				'name' => $request->get('name'),
 				'appointime' => $request->get('appointime'),
 				'point' => $request->get('point'),
@@ -149,7 +181,7 @@ class MissionsController extends Controller{
 				'creator' => Session::get('uid')
 			]);
 
-			$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
+			$result = ['message' => 'success', 'code' => 1, 'data' => $validator->messages()];
 			return response()->json($result);
 		}
 	}
@@ -178,20 +210,23 @@ class MissionsController extends Controller{
 			]
 		);
 		if ($validator->fails()){
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
-		}else{
-			$put = Missions::where('id', '=', $request->get('id'))->first()->update([
-				'name' => $request->get('name'),
-				'appointime' => $request->get('appointime'),
-				'point' => $request->get('point'),
-				'latitude' => $request->get('latitude'),
-				'longitude' => $request->get('longitude'),
-				'location' => $request->get('location'),
-				'note' => $request->get('note')
-			]);
 
-			$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
+		}else{
+			$put = Missions::where('id', '=', $request->get('id'))->first()->update(
+				[
+					'name' => $request->get('name'),
+					'appointime' => $request->get('appointime'),
+					'point' => $request->get('point'),
+					'latitude' => $request->get('latitude'),
+					'longitude' => $request->get('longitude'),
+					'location' => $request->get('location'),
+					'note' => $request->get('note')
+				]);
+
+			$result = ['message' => 'success', 'code' => 1, 'data' => $validator->messages()];
 			return response()->json($result);
 		}
 	}
@@ -202,13 +237,18 @@ class MissionsController extends Controller{
 			['id' => 'required|exists:missions,id']
 		);
 		if ($validator->fails()){
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
+
 		}else{
-			$put = Missions::where('id', '=', $request->get('id'))->first()->update([
+			
+			$put = Missions::where('id', '=', $request->get('id'))->first()->update(
+			[
 				'status' => 'cancel'
 			]);
-			$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
+
+			$result = ['message' => 'success', 'code' => 1, 'data' => $validator->messages()];
 			return response()->json($result);
 		}
 	}
@@ -219,13 +259,17 @@ class MissionsController extends Controller{
 			['id' => 'required|exists:missions,id']
 		);
 		if ($validator->fails()){
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
+
 		}else{
-			$put = Missions::where('id', '=', $request->get('id'))->first()->update([
+			$put = Missions::where('id', '=', $request->get('id'))->first()->update(
+			[
 				'status' => 'finish'
 			]);
-			$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
+			
+			$result = ['message' => 'success', 'code' => 1, 'data' => $validator->messages()];
 			return response()->json($result);
 		}
 	}
@@ -236,22 +280,27 @@ class MissionsController extends Controller{
 			['id' => 'required|exists:missions,id']
 		);
 		if ($validator->fails()){
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
+
 		}else{
-			//dd(Missions::where('id', '=', $request->get('id'))->first()->creator . Session::get('uid'));
+
 			if(Session::get('uid') === Missions::where('id', '=', $request->get('id'))->first()->creator){
-				$result = array('message' => 'failed', 'code' => 0, 'data' => '不能接自己的任務');
+				
+				$result = ['message' => 'failed', 'code' => 0, 'data' => '不能接自己的任務'];
 				return response()->json($result);
+
 			}else{
-				$put = Missions::where('id', '=', $request->get('id'))->first()->update([
+				$put = Missions::where('id', '=', $request->get('id'))->first()->update(
+				[
 					'status' => 'received',
 					'receiver' => Session::get('uid')
 				]);
-				$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
+				
+				$result = ['message' => 'success', 'code' => 1, 'data' => $validator->messages()];
 				return response()->json($result);
 			}
-			
 		}
 	}
 

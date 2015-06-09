@@ -1,9 +1,10 @@
-<?php
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Session;
 use Validator;
+
 use App\Trades;
 use App\Missions;
 use App\Users;
@@ -13,24 +14,28 @@ class PointController extends Controller{
 	public function getFromMe(Request $request){
 		
 		$gets = Trades::where('from', '=', Session::get('uid'))->get();
+		
 		foreach ($gets as $get) {
 			$get->from = Users::find($get->from)->name;
 			$get->to = Users::find($get->to)->name;
 			$get->type_id = Missions::find($get->type_id)->name;
 		}
-		$result = array('message' => 'success', 'code' => 1, 'data' => $gets);
+
+		$result = ['message' => 'success', 'code' => 1, 'data' => $gets];
 		return response()->json($result);
 	}
 
 	public function getToMe(Request $request){
 		
 		$gets = Trades::where('to', '=', Session::get('uid'))->get();
+		
 		foreach ($gets as $get) {
 			$get->from = Users::find($get->from)->name;
 			$get->to = Users::find($get->to)->name;
 			$get->type_id = Missions::find($get->type_id)->name;
 		}
-		$result = array('message' => 'success', 'code' => 1, 'data' => $gets);
+
+		$result = ['message' => 'success', 'code' => 1, 'data' => $gets];
 		return response()->json($result);
 	}
 
@@ -48,7 +53,7 @@ class PointController extends Controller{
 		);
 		if($validator->fails()){
 			
-			$result = array('message' => 'failed', 'code' => 0, 'data' => $validator->messages());
+			$result = ['message' => 'failed', 'code' => 0, 'data' => $validator->messages()];
 			return response()->json($result);
 			
 		}else{
@@ -56,13 +61,20 @@ class PointController extends Controller{
 			
 			if(Session::get('uid') === $res->creator){
 				$creatorpoint = Users::where('id', '=', $res->creator)->first()->point;
+				
 				if($creatorpoint >= $res->point){
 					$trade1 = Users::where('id', '=', $res->creator)
-					->update(['point' => Users::where('id', '=', $res->creator)->first()->point - $res->point]);
+									->update(['point' => Users::where('id', '=', $res->creator)
+									->first()
+									->point - $res->point]);
+					
 					$trade2 = Users::where('id', '=', $res->receiver)
-					->update(['point' => Users::where('id', '=', $res->receiver)->first()->point + $res->point]);
+									->update(['point' => Users::where('id', '=', $res->receiver)
+									->first()
+									->point + $res->point]);
 
-					$post = Trades::create([
+					$post = Trades::create(
+					[
 						'from' => $res->creator,
 						'to' => $res->receiver,
 						'type' => 'mission',
@@ -70,16 +82,17 @@ class PointController extends Controller{
 						'amount' => $res->point,
 						'note' => $request->get('note')
 					]);
-					$result = array('message' => 'success', 'code' => 1, 'data' => $validator->messages());
+					
+					$result = ['message' => 'success', 'code' => 1, 'data' => $validator->messages()];
 					return response()->json($result);
 
 				}else{
-					$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '點數餘額不足']);
+					$result = ['message' => 'failed', 'code' => 0, 'data' => ['msg' => '點數餘額不足']];
 					return response()->json($result);
 				}
 
 			}else{
-				$result = array('message' => 'failed', 'code' => 0, 'data' => ['msg' => '這不是你發的任務，所以不能送點喔']);
+				$result = ['message' => 'failed', 'code' => 0, 'data' => ['msg' => '這不是你發的任務，所以不能送點喔']];
 				return response()->json($result);
 			}
 		}

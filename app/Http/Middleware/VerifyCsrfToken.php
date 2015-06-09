@@ -17,7 +17,5 @@ class VerifyCsrfToken extends BaseVerifier {
 	{
 		Session::put('user_id', 1);
 		return $next($request);
-		// return parent::handle($request, $next);
 	}
-
 }
